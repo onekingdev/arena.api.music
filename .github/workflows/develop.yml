@@ -47,7 +47,7 @@ jobs:
     - name: Slack Notification
       uses: wei/curl@v1
       with:
-        args: -X POST https://develop.core.api.arena.com/vendors/slack/github/actions
+        args: -X POST ${{ secrets.ARENA_API_SLACK_ENDPOINT }}
           --data-urlencode 'repo_owner=${{github.repository_owner}}'
           --data-urlencode 'repo=${{github.repository}}'
           --data-urlencode 'commit=${{github.sha}}'
