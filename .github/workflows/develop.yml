@@ -13,17 +13,6 @@ jobs:
     - run: composer --version
     - run: composer install --no-suggest
 
-    - name: Configure AWS credentials
-      uses: aws-actions/configure-aws-credentials@v1
-      with:
-        aws-access-key-id: ${{ secrets.AWS_IAM_KEY_DEVELOP }}
-        aws-secret-access-key: ${{ secrets.AWS_IAM_SECRET_DEVELOP }}
-        aws-region: ${{ secrets.AWS_REGION_DEVELOP }}
-
-    - name: Copy Passport Keys
-      run: |
-        aws s3 sync s3://elasticbeanstalk-us-east-1-839729112102/oauth/api storage/keys
-
     - name: Zip Project
       id: zip-project
       run: zip -r deploy.zip .
